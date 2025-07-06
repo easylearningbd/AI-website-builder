@@ -31,6 +31,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
     })->name('admin.dashboard');
 
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
 
 });
 

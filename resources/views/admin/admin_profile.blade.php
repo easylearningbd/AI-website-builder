@@ -11,7 +11,9 @@
 
         <div class="card-body">
             
-    <form>
+    <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data" >
+        @csrf
+
         <div class="row g-2">
             
             <div class="mb-3 col-md-6">

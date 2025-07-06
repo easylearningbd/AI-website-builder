@@ -11,8 +11,8 @@
 
         <div class="card-body">
             
-    <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data" >
-        @csrf
+    <form action="{{ route('admin.password.update') }}" method="post" enctype="multipart/form-data" >
+      @csrf
 
         <div class="row g-2">
             

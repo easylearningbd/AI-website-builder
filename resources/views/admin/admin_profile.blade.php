@@ -12,55 +12,42 @@
             
     <form>
         <div class="row g-2">
+            
             <div class="mb-3 col-md-6">
+                <label for="inputEmail4" class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" value="{{ $profileData->name }}">
+            </div>
+
+           <div class="mb-3 col-md-6">
                 <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                <input type="email" name="email" class="form-control" value="{{ $profileData->email }}">
             </div>
+
             <div class="mb-3 col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                <label for="inputEmail4" class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" value="{{ $profileData->phone }}">
             </div>
-        </div>
 
-        <div class="mb-3">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
 
-        <div class="mb-3">
-            <label for="inputAddress2" class="form-label">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-
-        <div class="row g-2">
             <div class="mb-3 col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <label for="inputEmail4" class="form-label">Address</label>
+                <input type="text" name="address" class="form-control" value="{{ $profileData->address }}">
             </div>
-            <div class="mb-3 col-md-4">
-                <label for="inputState" class="form-label">State</label>
-                <select id="inputState" class="form-select">
-                    <option>Choose</option>
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                </select>
-            </div>
-            <div class="mb-3 col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-        </div>
 
-        <div class="mb-2">
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input fs-15" id="customCheck11">
-                <label class="form-check-label" for="customCheck11">Check this custom
-                    checkbox</label>
+              <div class="mb-3 col-md-6">
+                <label for="inputEmail4" class="form-label">Profile Image</label>
+                <input type="file" name="photo" class="form-control" >
             </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
+              <div class="mb-3 col-md-6">
+                <label for="inputEmail4" class="form-label"> </label>
+                 <img src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}"  class="rounded-circle avatar-xl img-thumbnail" style="width: 80px; height:80px;" >
+            </div>
+            
+        </div>
+ 
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
         </div> <!-- end card-body -->
     </div> <!-- end card-->

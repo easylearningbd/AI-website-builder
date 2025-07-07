@@ -39,8 +39,8 @@
                 <td>{{ $item->template_limit }}</td>
                 <td>{{ $item->price }}</td>
                 <td class="text-muted">
-                    <a href="javascript: void(0);" class="link-reset fs-20 p-1"> <i class="ti ti-pencil"></i></a>
-                    <a href="javascript: void(0);" class="link-reset fs-20 p-1"> <i class="ti ti-trash"></i></a>
+<a href="{{ route('edit.plans',$item->id) }}" class="link-reset fs-20 p-1"> <i class="ti ti-pencil"></i></a>
+<a href="javascript: void(0);" class="link-reset fs-20 p-1"> <i class="ti ti-trash"></i></a>
                 </td>
             </tr>
          @endforeach

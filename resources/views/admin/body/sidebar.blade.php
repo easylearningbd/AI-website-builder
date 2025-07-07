@@ -39,6 +39,29 @@
                 </a>
             </li>
 
+    <li class="side-nav-item">
+        <a data-bs-toggle="collapse" href="#Plan" aria-expanded="false" aria-controls="Plan" class="side-nav-link">
+            <span class="menu-icon"><i class="ti ti-invoice"></i></span>
+            <span class="menu-text"> Plan Manage</span>
+            <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="Plan">
+            <ul class="sub-menu">
+                <li class="side-nav-item">
+                    <a href="{{ route('all.plans') }}" class="side-nav-link">
+                        <span class="menu-text">All Plans</span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a href="apps-invoice-details.html" class="side-nav-link">
+                        <span class="menu-text">Add Plans</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </li>
+
             <li class="side-nav-item">
                 <a href="apps-chat.html" class="side-nav-link">
                     <span class="menu-icon"><i class="ti ti-message"></i></span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsUser;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\ProjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +48,13 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
     Route::get('/delete/plans/{id}', 'DeletePlans')->name('delete.plans');
 
   });
+
+   Route::controller(ProjectController::class)->group(function(){
+    Route::get('/all/projects', 'AllProjects')->name('all.projects');
+    
+
+  });
+
 
 
 

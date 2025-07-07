@@ -65,6 +65,19 @@ class PlanController extends Controller
     }
      // End Method 
 
+     public function DeletePlans($id){
+        Plan::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Plans Deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+     }
+     // End Method 
+
 
 
 }

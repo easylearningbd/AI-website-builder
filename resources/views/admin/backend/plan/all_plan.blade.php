@@ -5,9 +5,17 @@
 <div class="row">
 <div class="col-xl-12">
     <div class="card">
-        <div class="card-header border-bottom border-dashed d-flex align-items-center">
-            <h4 class="header-title">All Plans </h4>
+    <div class="card-header border-bottom justify-content-between d-flex flex-wrap align-items-center gap-2">
+    <div class="flex-shrink-0 d-flex align-items-center gap-2">
+        <div class="position-relative">
+           <h3>All Plans</h3>
         </div>
+    </div>
+
+    <a href="{{ route('add.plans') }}" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add Plans</a>
+</div>
+
+
         <div class="card-body">
             
             <div class="table-responsive-sm"> 

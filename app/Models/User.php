@@ -29,6 +29,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    public function plan(){
+        return $this->belongsTo(Plan::class, 'plan_id');
+    }
+
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

@@ -188,6 +188,35 @@
       }
 
     }
+
+document.addEventListener('DOMContentLoaded',function(){
+    const form = document.getElementById('project-form');
+    const nameInput = document.getElementById('name');
+    const descriptionTextarea = document.getElementById('description');
+    const apiPromptInput = document.getElementById('api_prompt');
+
+    nameInput.focus();
+
+    /// update api_prompt for when description will be change 
+    descriptionTextarea.addEventListener('input', function(){
+        if (!document.getElementById('template_type').value) {
+            apiPromptInput.value = this.value;            
+        }
+    });
+
+    form.addEventListener('submit', function(e){
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Creating Project.... 
+        `;
+    })
+})
+
+
+
+
 </script>
 
 

@@ -16,5 +16,10 @@ class ProjectController extends Controller
     }
     // End Method 
 
+    public function CreateProject(){
+        return view('admin.backend.projects.create');
+    }
+      // End Method 
+
 
 } 

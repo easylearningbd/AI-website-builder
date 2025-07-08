@@ -51,6 +51,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
    Route::controller(ProjectController::class)->group(function(){
     Route::get('/all/projects', 'AllProjects')->name('all.projects');
+    Route::get('/projects/create', 'CreateProject')->name('projects.create');
     
 
   });

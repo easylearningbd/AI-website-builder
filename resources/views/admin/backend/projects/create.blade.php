@@ -236,6 +236,23 @@ if (descriptionTextarea) {
 } 
 </script>
 
+ <style>
+.template-option {
+    transition: all 0.2s ease;
+}
 
+.template-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25) !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+</style>
 
 @endsection

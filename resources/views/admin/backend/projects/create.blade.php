@@ -117,10 +117,41 @@
             <button type="submit" class="btn btn-primary">Create Project</button>
         </div> 
     </div> 
-    </form>
-    
+    </form> 
+        </div> 
 
-            </div> 
+     <!-- Help Section -->
+            <div class="card mt-4 bg-light">
+                <div class="card-body">
+                    <h2 class="h5 card-title text-primary mb-3">💡 Getting Started Tips</h2>
+                    <ul class="list-unstyled text-muted small">
+                        <li><strong>Be Specific:</strong> The more details you provide, the better your AI-generated website will be.</li>
+                        <li><strong>Templates Help:</strong> Selecting a template gives the AI context about what type of website you want.</li>
+                        <li><strong>Iterate Later:</strong> You can always refine and modify your website after creation using the chat interface.</li>
+                    </ul>
+                </div>
+            </div>
+
+     <!-- Recent Project Section -->
+    @if (Auth::user()->projects()->count() > 0)
+      <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="h5 card-title text-white mb-3">Your Recent Projects</h2>
+        @foreach (Auth::user()->projects()->latest()->limit(3)->get() as $project)
+        <div class="d-flex justify-content-between align-items-center py-2 {{ !$loop->last ? 'border-bottom' : '' }} ">
+        </div>
+        <div>
+        <h6>{{ $project->name }}</h6>
+        <small class="text-muted">{{ $project->updated_at->diffForHumans() }}</small>
+        </div>
+        <a href="" class="text-primary fw-medium text-decoration-none">Continue</a> 
+        @endforeach 
+        </div> 
+      </div> 
+    @endif
+
+
+
         </div> 
     </div> 
 </div> 

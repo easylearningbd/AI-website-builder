@@ -96,6 +96,52 @@ private function buildUserPrompt(string $prompt, array $context = []): string {
 
 private function parseClaudeResponse(string $response, array $context): array {
 
+    // Try to extract Json from the response 
+    $jsonStart = strpos($response, '{');
+    $jsonEnd = strrpos($response, '}');
+
+    if ($jsonStart !== false && $jsonEnd !== false) {
+       $jsonStart = substr($response, $jsonStart, $jsonEnd - $jsonStart + 1);
+       $decoded = json_decode($jsonStart, true);
+
+       if ($decoded) {
+        $html = $decoded['html'] ?? '';
+        $html = $this->cleanHtml($html);
+
+        if (stripos($html, '<html') === false && !empty($context['html_content'])) {
+           $html = $this->ensureFullHtml($context['html_content'],$html);
+        } elseif(strpos($html, '<html') === false) {
+            $html = $this->ensureFullHtml($html);
+        }
+
+        /// Replace vai.placeholder.com with placehold.co
+        $html = $this->replacePlaceholderImages($html);
+        return [
+            'html' => $html,
+            'css' => $decoded['css'] ?? $context['css_content'] ?? '',
+            'js' => $decoded['js'] ?? $context['js_content'] ?? '',
+        ];
+       } 
+    }
+
+    $html = $this->cleanHtml($response);
+    if (!empty($context['html_content']) && stripos($html, '<html') === false) {
+        $html = $this->ensureFullHtml($context['html_content'], $html);
+    } elseif (stripos($html, '<html') === false) {
+       $html = $this->ensureFullHtml($html);
+    }
+
+    $html = $this->replacePlaceholderImages($html);
+        return [
+            'html' => $html,
+            'css' => $decoded['css'] ?? $context['css_content'] ?? '',
+            'js' => $decoded['js'] ?? $context['js_content'] ?? '',
+        ]; 
+}
+// End Method 
+
+private function cleanHtml(string $html): string {
+
 }
 // End Method 
 

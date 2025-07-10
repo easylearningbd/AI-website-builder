@@ -58,29 +58,52 @@
     <input type="text" id="chat-input" placeholder="Describe what you want to change" class="form-control flex-grow-1" required>
     <button type="submit" id="send-button" class="btn btn-primary">Send</button>
     </form> 
-</div>
-
-
-
-
-        </div>
-
-    </div>
-
+</div> 
+        </div> 
+    </div> 
 
         <!---- Chat Panel End   --->
 
+
+ <!---- Preview Panel Start   --->
+
+ <div class="col-8 bg-light">
+    <div class="card h-100">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h2 class="h6 mb-0 text-dark">Live Preview</h2>
+        <div class="btn-group">
+            <button class="btn btn-outline-secondary preview-mode-btn active">Desktop</button>
+            <button class="btn btn-outline-secondary preview-mode-btn ">Tablet</button>
+            <button class="btn btn-outline-secondary preview-mode-btn ">Mobile</button> 
+        </div> 
+        </div>
+
+    <div class="card-body p-3 d-flex flex-column">
+        <div id="preview-container" class="flex-grow-1 position-relative overflow-auto" style="min-height: calc(100vh - 150px);">
+            <iframe id="preview-frame" class="w-100 h-100 border rounded shadow-sm bg-white" src="about:blank">
+
+            </iframe> 
+        </div> 
     </div> 
+    </div> 
+ </div>
+
+
+  <!---- Preview Panel End   --->
+ 
+    </div> 
+</div>  
 </div>
 
-
-
-
-
-
-</div>
-
-
+  <!---- Loading Div   --->
+  {{-- <div id="loading-overlay" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center hidden" style="z-index: 1050">
+    <div class="bg-white p-4 rounded shadow">
+        <div class="spinner-border text-primary mb-2" role="status">
+            <span class="visually-hidden">Loading...</span> 
+        </div>
+        <p class="text-dark mb-0">Generating your website...</p> 
+    </div> 
+  </div> --}}
 
 
 

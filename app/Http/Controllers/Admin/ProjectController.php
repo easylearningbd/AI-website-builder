@@ -81,5 +81,13 @@ class ProjectController extends Controller
     }
     // End Method 
 
+    public function EditProject(Project $project){
+
+        $this->authorize('update',$project);
+        return view('admin.backend.projects.edit',compact('project'));
+
+    }
+    // End Method 
+
 
 } 

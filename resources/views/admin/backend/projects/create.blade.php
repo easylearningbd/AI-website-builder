@@ -11,7 +11,7 @@
                     <p class="mb-0 text-white-50">Start building your AI-Generated Website</p> 
                 </div>
 
-    <form action="" class="card-body" method="POST" id="project-form">
+    <form action="{{ route('projects.store') }}" class="card-body" method="POST" id="project-form">
         @csrf
 
      <div class="mb-3">

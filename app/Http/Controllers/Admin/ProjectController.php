@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Project;
 use App\Services\ClaudeService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Log;
 
 class ProjectController extends Controller
 {
@@ -49,8 +50,33 @@ class ProjectController extends Controller
 
       // If there have any API Prompt is provided then it will be generate the website..
 
+    if ($request->api_prompt) {
+       try {
 
+        $context = [
+            'html_content' => $project->html_content,
+            'css_content' => $project->css_content,
+            'js_content' => $project->js_content,
+        ];
 
+        $generated = $this->claudeService->generateWebsite($request->api_prompt, $context);
+
+        $project->update([
+            'html_content' => $generated['html'],
+            'css_content' => $generated['css'],
+            'js_content' => $generated['js'],
+        ]);
+
+        // Add to check history 
+
+        $project->addChatMessage('user',$request->api_prompt);
+        $project->addChatMessage('assistant', 'Initial website generated successfully!');        
+       } catch (\Exception $e) {
+         Log::error('Failed to generate website' . $e->getMessage(), ['project_id' => $project->id ]);
+       }
+    }
+
+    return redirect()->route('projects.edit',$project);
 
     }
     // End Method 

@@ -142,17 +142,48 @@ private function parseClaudeResponse(string $response, array $context): array {
 
 private function cleanHtml(string $html): string {
 
+    //// Remove everything after the </body>
+    $bodyEndPos = strripos($html, '</body>');
+    if ($bodyEndPos !== false) {
+       return substr($html, 0, $bodyEndPos + 7); // include </body>
+    }
+    return $html; 
 }
 // End Method 
 
+private function ensureFullHtml(string $baseHtml, string $newContent = ''): string {
+    if (stripos($baseHtml, '<html') === false) {
+        return "<!DOCTYPE html><html lang='en'><head><title>Preview</title><link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'></head><body>{$newContent}</body><script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script></html>";
+    }
 
+    $bodyEndPos = strripos($baseHtml, '</body>');
+    if ($bodyEndPos !== false && !empty($newContent)) {
+       return substr($baseHtml, 0 , $bodyEndPos) . $newContent . substr($baseHtml, $bodyEndPos);
+    }
 
+    return $baseHtml;
 
+}
+// End Method 
 
+private function replacePlaceholderImages(string $html): string {
 
+     $html = preg_replace(
+            '/https:\/\/via\.placeholder\.com\/(\d+x\d+)/',
+            'https://placehold.co/$1',
+            $html
+        );
+        // If no size is specified or default is used, set to 300x200
+        $html = preg_replace(
+            '/https:\/\/via\.placeholder\.com\/50/',
+            'https://placehold.co/300x200',
+            $html
+        );
+        return $html;
 
+}  
 
 
 
 }
-
+ 

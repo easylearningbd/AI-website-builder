@@ -105,6 +105,37 @@
     </div> 
   </div> --}}
 
+  <script>
+    const projectId = {{ $project->id }}
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        await updatePreview();
+        document.getElementById('chat-form').addEventListener('submit', handleChatSubmit);
+        scrollChatToBottom();
+    });
+
+async function handleChatSubmit(e) {
+    e.preventDefault();
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
+    if(!message) return;
+
+    addChatMessage('user',message);
+    input.value = '';
+    showLoading();
+
+    try {
+        
+    } catch (error) {
+        
+    }
+
+
+
+}
+
+  </script>
+
 
 
 @endsection

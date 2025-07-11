@@ -94,14 +94,14 @@
 </div>
 
   <!---- Loading Div   --->
-  {{-- <div id="loading-overlay" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center hidden" style="z-index: 1050">
+  <div id="loading-overlay" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center hidden" style="z-index: 1050">
     <div class="bg-white p-4 rounded shadow">
         <div class="spinner-border text-primary mb-2" role="status">
             <span class="visually-hidden">Loading...</span> 
         </div>
         <p class="text-dark mb-0">Generating your website...</p> 
     </div> 
-  </div> --}}
+  </div>
 
   <script>
     const projectId = {{ $project->id }}
@@ -177,11 +177,57 @@ function updatePreviewFrame(html){
 
 
 function addChatMessage(role, content){
+    const chatHistory = document.getElementById('chat-history');
+    const div = document.createElement('div');
+    div.className = `chat-message ${role === 'user' ? 'text-end' : 'text-start'} mb-2 `;
+    const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
 
+    div.innerHTML = `
+    <div class="d-inline-block ${role === 'user' ? 'bg-primary text-white ms-4' : 'bg-light text-dark me-4'} p-2 rounded">${ content }</div>
+        <div class="text-muted small mt-1"> ${time} </div>  
+    `;
+
+    chatHistory.appendChild(div);
+    scrollChatToBottom();  
+}
+
+function scrollChatToBottom(){
+    const chatHistory = document.getElementById('chat-history');
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+function showLoading(){
+    document.getElementById('loading-overlay').classList.remove('hidden');
+    document.getElementById('send-button').disabled = true;
+}
+
+function hideLoading(){
+    document.getElementById('loading-overlay').classList.add('hidden');
+    document.getElementById('send-button').disabled = false;
 }
 
   </script>
 
-
+<style>
+.chat-message {
+    animation: fadeIn 0.3s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#preview-frame {
+    transition: all 0.3s ease;
+}
+#preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 150px); /* Increased minimum height */
+}
+.hidden {
+    display: none !important;
+}
+</style>
 
 @endsection

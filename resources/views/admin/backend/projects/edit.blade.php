@@ -80,9 +80,7 @@
 
     <div class="card-body p-3 d-flex flex-column">
         <div id="preview-container" class="flex-grow-1 position-relative overflow-auto" style="min-height: calc(100vh - 150px);">
-            <iframe id="preview-frame" class="w-100 h-100 border rounded shadow-sm bg-white" src="about:blank">
-
-            </iframe> 
+            <iframe id="preview-frame" class="w-100 h-100 border rounded shadow-sm bg-white" src="about:blank"> </iframe> 
         </div> 
     </div> 
     </div> 
@@ -152,7 +150,34 @@ async function handleChatSubmit(e) {
 }
 
 async function updatePreview() {
-    
+    try {
+        const response = await fetch(`/api/projects/${projectId}/preview`);
+        if(!response.ok) throw new Error(`HTTP error status: ${response.status}`);
+        const data = await response.json();
+        console.log('Preview data:' , data);
+        if (data.html) {
+            updatePreviewFrame(data.html);
+        } else {
+            addChatMessage('assistant', 'No content avaiable. Plz provide a prompt to generate the website');
+        }
+    } catch (e) {
+        console.error('Preview update failed',e);
+         addChatMessage('assistant', 'Failed to load preview:' + e.message);
+    } 
+}
+
+function updatePreviewFrame(html){
+    const frame = document.getElementById('preview-frame');
+    try {
+        frame.srcdoc = html;
+    } catch (e) {
+        console.error('Failed to set srcdoc', e);
+    }
+}
+
+
+function addChatMessage(role, content){
+
 }
 
   </script>

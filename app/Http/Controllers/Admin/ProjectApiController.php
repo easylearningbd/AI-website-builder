@@ -67,6 +67,31 @@ class ProjectApiController extends Controller
     }
     //End Method 
 
+ public function getPreview(Project $project){
+    Log::info('Preview data request', ['project_id' => $project->id]);
+
+    $this->authorize('update',$project);
+
+    $html = $project->html_content ?? '<html><body></body><h1>No Content Yet</h1><p>Start a conversation to generate your website!</p></html>';
+    $css = $project->css_content ?? '';
+    $js = $project->js_content ?? '';
+
+    // Ensure a complete html docucment 
+    if (!str_contains($html, '<html>')) {
+        $html = "<!DOCTYPE html><html><head><title>Preview - {$project->name} </title></head><body>$html</body></html>";
+    }
+    if ($css) {
+       $html = str_replace('</head>',"<style>$css</style></head>", $html);
+    }
+
+    if ($js) {
+       $html = str_replace('</body>',"<script>$jd</script></body>", $html);
+    }
+
+    return response()->json(['html' => $html]);  
+}
+ //End Method 
+
 
 
 

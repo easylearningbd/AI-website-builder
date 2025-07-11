@@ -70,6 +70,9 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
   Route::get('api/projects/{project}/preview', [ProjectApiController::class, 'getPreview'])->name('api.projects.preview');
 
 
+   Route::get('projects/{project}/preview', [ProjectController::class, 'ViewPreview'])->name('projects.preview');
+
+
 
 
 

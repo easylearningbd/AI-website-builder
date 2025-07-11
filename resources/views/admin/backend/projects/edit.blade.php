@@ -11,7 +11,7 @@
                 </div>
             <div class="col-auto">
                 <div class="d-flex gap-2">
-                    <button class="btn btn-primary">Preview</button>
+                    <button onclick="previewProject()" class="btn btn-primary">Preview</button>
                     <a href="" class="btn btn-success">Export</a>
                 </div> 
             </div> 
@@ -194,6 +194,10 @@ function addChatMessage(role, content){
 function scrollChatToBottom(){
     const chatHistory = document.getElementById('chat-history');
     chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+function previewProject(){
+    window.open(`/projects/${projectId}/preview`, '_blank');
 }
 
 function showLoading(){

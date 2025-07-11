@@ -89,5 +89,13 @@ class ProjectController extends Controller
     }
     // End Method 
 
+    public function ViewPreview(Project $project){
+
+       $this->authorize('view',$project);
+       return view('admin.backend.projects.preview',compact('project'));
+
+    }
+    // End Method 
+
 
 } 

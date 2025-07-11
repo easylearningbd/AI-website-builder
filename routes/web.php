@@ -7,6 +7,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsUser;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProjectApiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -64,7 +65,9 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
 ////// End Only for Admin Route 
 
+  Route::post('api/projects/{project}/chat', [ProjectApiController::class, 'Chat'])->name('api.projects.chat');
 
+  Route::get('api/projects/{project}/preview', [ProjectApiController::class, 'getPreview'])->name('api.projects.preview');
 
 
 

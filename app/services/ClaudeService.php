@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class ClaudeService {
-
+ 
     private string $apiKey;
     private string $baseUrl = 'https://api.anthropic.com';
 
@@ -23,7 +23,7 @@ public function generateWebsite(string $prompt, array $context = []): array {
             'x-api-key' => $this->apiKey,
             'content-type' => 'application/json',
             'anthropic-version' => '2023-06-01'
-       ])->timeout(120)->post($this->$baseUrl . '/v1/messages',[
+       ])->timeout(120)->post($this->baseUrl . '/v1/messages',[
             'model' => 'claude-3-5-sonnet-20241022',
             'max_tokens' => 4000,
             'system' => $systemPrompt,

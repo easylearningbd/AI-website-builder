@@ -70,7 +70,7 @@ class ProjectApiController extends Controller
  public function getPreview(Project $project){
     Log::info('Preview data request', ['project_id' => $project->id]);
 
-    $this->authorize('update',$project);
+    $this->authorize('view',$project);
 
     $html = $project->html_content ?? '<html><body></body><h1>No Content Yet</h1><p>Start a conversation to generate your website!</p></html>';
     $css = $project->css_content ?? '';
@@ -85,7 +85,7 @@ class ProjectApiController extends Controller
     }
 
     if ($js) {
-       $html = str_replace('</body>',"<script>$jd</script></body>", $html);
+       $html = str_replace('</body>',"<script>$js</script></body>", $html);
     }
 
     return response()->json(['html' => $html]);  

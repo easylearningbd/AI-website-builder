@@ -125,13 +125,34 @@ async function handleChatSubmit(e) {
     showLoading();
 
     try {
-        
+        const response = await fetch(`/api/projects/${projectId}/chat`,{
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept' : 'application/json',
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({ message })
+        });
+
+    const data = await response.json();
+    if (data.success) {
+        addChatMessage('assistant', 'Website updated successfully');
+        updatePreview();
+    } else {
+        addChatMessage('assistant', 'Error:' + data.message);
+    } 
     } catch (error) {
-        
-    }
+        console.error(error);
+         addChatMessage('assistant', 'Server error. Plase try again');
+    } finally {
+         hideLoading();
+    } 
+}
 
-
-
+async function updatePreview() {
+    
 }
 
   </script>

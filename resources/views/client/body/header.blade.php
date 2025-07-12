@@ -89,7 +89,7 @@
             <div class="dropdown">
                 <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown"
                     data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" width="32" class="rounded-circle me-lg-2 d-flex"
+                    <img src="{{ (!empty($profileData->photo)) ? url('upload/user_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" width="32" class="rounded-circle me-lg-2 d-flex"
                         alt="user-image">
                     <span class="d-lg-flex flex-column gap-1 d-none">
                         <h5 class="my-0">{{ $profileData->name }}</h5>
@@ -103,7 +103,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="{{ route('admin.profile') }}" class="dropdown-item">
+                    <a href="{{ route('user.profile') }}" class="dropdown-item">
                         <i class="ri-account-circle-line me-1 fs-16 align-middle"></i>
                         <span class="align-middle">My Account</span>
                     </a>

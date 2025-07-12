@@ -30,6 +30,15 @@ Route::middleware(['auth',IsUser::class])->group(function(){
      Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
      Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
+
+ Route::controller(UserController::class)->group(function(){
+    Route::get('/plans/upgrade', 'PlanUpgrade')->name('plans.upgrade'); 
+
+  });
+
+
+
+
 });
 
 ////// End Only for User Route 

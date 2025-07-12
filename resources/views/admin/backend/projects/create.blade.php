@@ -143,7 +143,7 @@
         <h6>{{ $project->name }}</h6>
         <small class="text-muted">{{ $project->updated_at->diffForHumans() }}</small>
         </div>
-        <a href="" class="text-primary fw-medium text-decoration-none">Continue</a> 
+        <a href="{{ route('projects.edit',$project) }}" class="text-primary fw-medium text-decoration-none">Continue</a> 
         @endforeach 
         </div> 
       </div> 

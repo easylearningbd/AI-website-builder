@@ -71,6 +71,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
 
    Route::get('projects/{project}/preview', [ProjectController::class, 'ViewPreview'])->name('projects.preview');
+   Route::get('projects/{project}/export', [ProjectController::class, 'Export'])->name('projects.export');
 
 
 

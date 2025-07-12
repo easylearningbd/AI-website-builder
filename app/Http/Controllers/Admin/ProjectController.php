@@ -97,5 +97,33 @@ class ProjectController extends Controller
     }
     // End Method 
 
+    public function Export(Project $project){
+
+        $this->authorize('view',$project);
+
+        $html = $project->html_content;
+        $css = $project->css_content;
+        $js = $project->js_content;
+
+        // Combine into the single HTML File
+        $fullHtml = str_replace(
+            '</head>',
+            "<style>$css</style>\n</head>",
+            $html
+        );
+
+         $fullHtml = str_replace(
+            '</body>',
+            "<script>$js</script>\n</body>",
+            $fullHtml
+        );
+
+        return response($fullHtml)
+            ->header('Content-Type','text/html')
+            ->header('Content-Disposition','attachment; filename="' . $project->name . '.html"'); 
+
+    }
+     // End Method 
+
 
 } 

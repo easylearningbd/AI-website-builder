@@ -117,9 +117,19 @@
 
         <!-- Help Box -->
         <div class="help-box text-center">
-            <h5 class="fw-semibold fs-16">Unlimited Access</h5>
-            <p class="mb-3 text-muted">Upgrade to plan to get access to unlimited reports</p>
+            <h5 class="fw-semibold fs-16">Your Plan Details</h5>
+        
+            <p class="mb-3 text-muted">
+    Plan : <strong>{{ Auth::user()->plan->name }}</strong> <br>
+    Tokens Avaiable: <br> 
+    {{ Auth::user()->plan->token_limit - Auth::user()->token_used }} / {{ Auth::user()->plan->token_limit }} <br>
+
+    Template Allowed: <br> {{ Auth::user()->projects->count() }} / {{ Auth::user()->plan->template_limit }}
+
+            </p>
+          
             <a href="{{ route('plans.upgrade') }}" class="btn btn-danger btn-sm">Upgrade</a>
+
         </div>
 
         <div class="clearfix"></div>

@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectApiController;
 
+use App\Http\Controllers\User\UserController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,7 +22,8 @@ Route::middleware(['auth',IsUser::class])->group(function(){
     Route::get('/dashboard', function () {
         return view('client.index');
     })->name('dashboard');
-    
+
+     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
 });
 

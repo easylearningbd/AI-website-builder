@@ -70,7 +70,7 @@ class UserProjectController extends Controller
 
       // If there have any API Prompt is provided then it will be generate the website..
 
-    if ($request->api_prompt && $user->isAdmin()) {
+    if ($request->api_prompt && !$user->isAdmin()) {
        try {
 
         $context = [

@@ -17,7 +17,7 @@
         <p class="card-text text-muted mb-3">{{ $project->description }}</p>
         <p class="card-text text-muted mb-3">Updated {{ $project->updated_at->diffForHumans() }}</p> 
     <div class="d-flex gap-2">
-        <a href="{{ route('projects.edit',$project) }}" class="btn btn-primary btn-sm">Edit</a>
+        <a href="{{ route('user.projects.edit',$project) }}" class="btn btn-primary btn-sm">Edit</a>
         </div>
     </div>
 

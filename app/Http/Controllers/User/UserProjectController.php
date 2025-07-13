@@ -63,14 +63,14 @@ class UserProjectController extends Controller
         }
 
         // Create the project 
-        $project = Auth::user()->projects()->create([
+        $project = $user->projects()->create([
             'name' => $request->name,
             'description' => $request->description
         ]);
 
       // If there have any API Prompt is provided then it will be generate the website..
 
-    if ($request->api_prompt) {
+    if ($request->api_prompt && $user->isAdmin()) {
        try {
 
         $context = [
@@ -88,7 +88,7 @@ class UserProjectController extends Controller
         ]);
 
         // Add to check history 
-
+        $user->increment('token_used', 20);
         $project->addChatMessage('user',$request->api_prompt);
         $project->addChatMessage('assistant', 'Initial website generated successfully!');        
        } catch (\Exception $e) {
@@ -96,10 +96,18 @@ class UserProjectController extends Controller
        }
     }
 
-    return redirect()->route('projects.edit',$project);
+    return redirect()->route('user.projects.edit',$project);
 
     }
     // End Method 
+
+    public function UserProjectsEdit(Project $project){
+
+        $this->authorize('update',$project);
+        return view('client.backend.projects.edit',compact('project'));
+
+    }
+    // End Method
 
 
 }

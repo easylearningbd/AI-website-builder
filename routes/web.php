@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectApiController;
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserProjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,12 @@ Route::middleware(['auth',IsUser::class])->group(function(){
 
  Route::controller(UserController::class)->group(function(){
     Route::get('/plans/upgrade', 'PlanUpgrade')->name('plans.upgrade'); 
+
+  });
+
+
+  Route::controller(UserProjectController::class)->group(function(){
+    Route::get('/user/all/projects', 'UserAllProjects')->name('user.all.projects'); 
 
   });
 

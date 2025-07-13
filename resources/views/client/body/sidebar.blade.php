@@ -42,7 +42,7 @@
     
 
             <li class="side-nav-item">
-                <a href="{{ route('all.projects') }}" class="side-nav-link">
+                <a href="{{ route('user.all.projects') }}" class="side-nav-link">
                     <span class="menu-icon"><i class="ti ti-message"></i></span>
                     <span class="menu-text"> Projects </span>
                 </a>

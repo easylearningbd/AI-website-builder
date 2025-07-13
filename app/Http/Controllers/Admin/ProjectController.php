@@ -111,7 +111,7 @@ class ProjectController extends Controller
             "<style>$css</style>\n</head>",
             $html
         );
-
+ 
          $fullHtml = str_replace(
             '</body>',
             "<script>$js</script>\n</body>",

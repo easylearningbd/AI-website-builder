@@ -40,6 +40,8 @@ Route::middleware(['auth',IsUser::class])->group(function(){
 
   Route::controller(UserProjectController::class)->group(function(){
     Route::get('/user/all/projects', 'UserAllProjects')->name('user.all.projects'); 
+    Route::get('/user/projects/create', 'UserProjectsCreate')->name('user.projects.create'); 
+    Route::post('/user/projects/store', 'UserProjectsStore')->name('user.projects.store');
 
   });
 

@@ -69,7 +69,7 @@ The foundational tools and support you need to build your business.
         <button class="btn btn-secondary fw-semibold w-100" disabled>Current Plan</button>
 
     @else 
-      <a href="" class="btn {{ $plan->name === 'Starter' ? 'btn-danger' : 'btn-primary' }} fw-semibold w-100 ">Buy Now</a> 
+      <a href="{{ route('plans.subscribe',$plan->id) }}" class="btn {{ $plan->name === 'Starter' ? 'btn-danger' : 'btn-primary' }} fw-semibold w-100 ">Buy Now</a> 
     @endif 
 
                 

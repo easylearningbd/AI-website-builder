@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Plan;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -118,6 +119,34 @@ class UserController extends Controller
     }
       //End Method 
 
+    public function PlanSubscribe(Request $request, $planId){
 
+        $plan = Plan::findOrFail($planId);
+        $user = Auth::user();
+
+        if ($user->plan->name === $plan->name) {
+            return redirect()->back()->with('error','You are already on this plan');
+        }
+
+       $transaction = Transaction::create([
+        'user_id' => $user->id,
+        'plan_id' => $plan->id,
+        'transaction_id' => 'PENDING_'. time(), // Temporary id
+        'amount' => $plan->price,
+        'status' => 'pending',
+        'created_at' => now(),
+        'updated_at' => now(),
+       ]);
+
+       return redirect()->route('plans.payment',$transaction->id)->with('success','Plz provide your bank transfer details');
+
+    }
+    //End Method 
+
+    public function showPaymentForm(){
+
+
+    }
+     //End Method 
 
 } 

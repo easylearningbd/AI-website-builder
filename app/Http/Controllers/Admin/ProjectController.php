@@ -132,5 +132,31 @@ class ProjectController extends Controller
     }
     // End Method 
 
+    public function UpdateTransaction(Request $request, $id){
+        $transaction = Transaction::findOrFail($id);
+        $newStatus = $request->input('status');
+
+        if (!in_array($newStatus, ['pending','approved','rejected'])) {
+            return redirect()->back()->with('error','Invalid status selected');
+        }
+
+        $transaction->status = $newStatus;
+        $transaction->save();
+
+        if ($newStatus === 'approved') {
+           $user = $transaction->user;
+           $user->plan_id = $transaction->plan_id;
+           $user->token_used = 0;
+           $user->save();
+        }
+
+         $notification = array(
+            'message' => 'Transaction updates successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->route('all.orders')->with($notification);  
+    }
+     // End Method 
+
 
 } 

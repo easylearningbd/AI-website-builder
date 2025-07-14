@@ -42,9 +42,11 @@
                
                  <td class="text-muted">
  <div class="hstack gap-1 justify-content-end">
-    <form action="">
+    <form action="{{ route('update.transaction',$item->id) }}" method="POST">
+        @csrf
+        @method('PATCH')
         <select name="status" class="form-control form-control-sm">
-            <option value="" selected>Select Status</option>
+            <option value="" disabled>Select Status</option>
             <option value="pending" {{ $item->status === 'pending' ? 'selected' : '' }} >Pending</option>
             <option value="approved" {{ $item->status === 'approved' ? 'selected' : '' }} >Approved</option>
             <option value="rejected" {{ $item->status === 'rejected' ? 'selected' : '' }} >Rejected</option>

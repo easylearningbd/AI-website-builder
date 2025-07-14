@@ -154,4 +154,24 @@ class UserController extends Controller
     }
      //End Method 
 
+     public function ProcessPayment(Request $request, $transactionId){
+
+        $request->validate([
+            'user_transaction_id' => 'required|string'
+        ]);
+    
+        $transaction = Transaction::findOrFail($transactionId);
+        if ($transaction->user_id !== Auth::id()) {
+            return redirect()->back()->with('error','Unauthorized access');
+        }
+
+        $transaction->update([
+            'transaction_id' => $request->user_transaction_id,
+            'status' => 'pending'
+        ]);
+
+    return redirect()->route('user.projects.edit', Auth::user()->projects()->first())->with('success', 'Your payment details have been submitted. plz wait for admin verification');
+     }
+      //End Method 
+
 } 

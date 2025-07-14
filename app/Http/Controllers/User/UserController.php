@@ -143,8 +143,13 @@ class UserController extends Controller
     }
     //End Method 
 
-    public function showPaymentForm(){
+    public function showPaymentForm($transactionId){
 
+        $transaction = Transaction::findOrFail($transactionId);
+        if ($transaction->user_id !== Auth::id()) {
+            return redirect()->back()->with('error','Unauthorized access');
+        }
+        return view('client.backend.plans.payment',compact('transaction')); 
 
     }
      //End Method 

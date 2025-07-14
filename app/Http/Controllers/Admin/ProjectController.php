@@ -10,6 +10,7 @@ use App\Models\Project;
 use App\Services\ClaudeService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Log;
+use App\Models\Transaction;
 
 class ProjectController extends Controller
 {
@@ -80,7 +81,7 @@ class ProjectController extends Controller
 
     }
     // End Method 
-
+ 
     public function EditProject(Project $project){
 
         $this->authorize('update',$project);
@@ -124,6 +125,12 @@ class ProjectController extends Controller
 
     }
      // End Method 
+
+    public function AllOrders(){
+        $plan = Transaction::with(['user', 'plan'])->get();
+        return view('admin.backend.transaction.all_transaction',compact('plan'));
+    }
+    // End Method 
 
 
 } 

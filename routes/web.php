@@ -91,6 +91,12 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
   });
 
+  Route::controller(ProjectController::class)->group(function(){
+    Route::get('/all/orders', 'AllOrders')->name('all.orders');
+   
+
+  });
+
 
 
 

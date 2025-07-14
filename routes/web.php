@@ -8,6 +8,7 @@ use App\Http\Middleware\IsUser;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectApiController;
+use App\Http\Controllers\Admin\BlogController;
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserProjectController;
@@ -93,8 +94,13 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
   Route::controller(ProjectController::class)->group(function(){
     Route::get('/all/orders', 'AllOrders')->name('all.orders');
-    Route::patch('/update/transaction/{id}', 'UpdateTransaction')->name('update.transaction');
-   
+    Route::patch('/update/transaction/{id}', 'UpdateTransaction')->name('update.transaction'); 
+
+  });
+
+  Route::controller(BlogController::class)->group(function(){
+    Route::get('/all/blog', 'AllBlog')->name('all.blog');
+    
 
   });
 

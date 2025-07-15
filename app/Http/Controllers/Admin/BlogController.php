@@ -16,6 +16,13 @@ class BlogController extends Controller
     }
     //End Method 
 
+    public function AddBlog(){
+        return view('admin.backend.blog.add_blog');
+    }
+    //End Method 
+
+
+
 
 
 

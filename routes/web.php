@@ -120,8 +120,8 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
    Route::get('projects/{project}/export', [ProjectController::class, 'Export'])->name('projects.export');
 
 
-
-
+ //////////// BLOG ALL ROUTE 
+   Route::get('/generate-blog/{title}', [BlogController::class, 'GenerateBlog'])->name('generate.blog');
 
 
 

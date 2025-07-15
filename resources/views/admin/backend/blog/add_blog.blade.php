@@ -23,7 +23,7 @@
     
         <div class="col-md-6 mt-4">
            <label for="input2" class="form-label"> </label>
-           <button class="btn btn-primary">Generate</button> 
+           <button class="btn btn-primary" onclick="generateBlog()" >Generate</button> 
         </div>
 
         <div class="mb-3 col-md-12">
@@ -69,6 +69,40 @@
             ]
         }
     });
+
+    async function generateBlog(){
+        const title = document.getElementById('blog-title').value;
+
+        if (!title) {
+            alert('Please enter a title');
+            return
+        }
+
+        try {
+            const response = await fetch(`/generate-blog/${encodeURIComponent(title)}` , {
+                method : 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error status: ${response.status}`); 
+            }
+
+        const data = await response.json();
+        if (data.success) {
+            quill.setContents([{ insert: data.content }])
+        } else {
+            alert('Error: ' + data.message);
+        } 
+        } catch (error) {
+            console.error('Generate blog error:',error);
+        } 
+    }
+
+
+    
 
 
 </script>

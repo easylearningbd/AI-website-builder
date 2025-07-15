@@ -21,6 +21,11 @@ class BlogController extends Controller
     }
     //End Method 
 
+    public function GenerateBlog($title){
+
+    }
+    //End Method 
+
 
 
 

@@ -13,7 +13,7 @@ class ClaudeService {
         $this->apiKey = config('services.claude.api_key');
         Log::info('Cladue API KEY: ' . $this->apiKey);
     }
-
+ 
 public function generateWebsite(string $prompt, array $context = []): array {
     try {
        $systemPrompt = $this->buildSystemPrompt();

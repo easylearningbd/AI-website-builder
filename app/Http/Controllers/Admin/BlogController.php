@@ -37,7 +37,7 @@ class BlogController extends Controller
     //End Method 
 
     public function GenerateBlog($title){
-        if (!this->apiKey) {
+        if (!$this->apiKey) {
             return response()->json(['success' => false, 'message' => 'Claude API Key is not configuerd'],500);
         }
       
@@ -45,7 +45,7 @@ class BlogController extends Controller
 
     try {
 
-        $response = $client->post($this->baseUrl . '/vi/messages',[
+        $response = $client->post($this->baseUrl . '/v1/messages',[
             'headers' => [
                 'x-api-key' => $this->apiKey,
                 'content-type' => 'application/json',

@@ -124,6 +124,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
    Route::get('/generate-blog/{title}', [BlogController::class, 'GenerateBlog'])->name('generate.blog');
 
    Route::post('/save-blog', [BlogController::class, 'SaveBlog'])->name('save.blog');
+   Route::get('/edit/blog/{id}', [BlogController::class, 'EditBlog'])->name('edit.blog');
 
 
 

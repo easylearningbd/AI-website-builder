@@ -115,6 +115,12 @@ class BlogController extends Controller
     }
     //End Method 
 
+    public function EditBlog($id){
+        $blog = Blog::findOrFail($id);
+        return view('admin.backend.blog.edit_blog',compact('blog'));
+    }
+    //End Method 
+
 
 
 

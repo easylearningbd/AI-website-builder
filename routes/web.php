@@ -123,6 +123,8 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
  //////////// BLOG ALL ROUTE 
    Route::get('/generate-blog/{title}', [BlogController::class, 'GenerateBlog'])->name('generate.blog');
 
+   Route::post('/save-blog', [BlogController::class, 'SaveBlog'])->name('save.blog');
+
 
 
 

@@ -11,6 +11,8 @@ use App\Services\ClaudeService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use GuzzleHttp\Client; 
 use Illuminate\Support\Facades\Log;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class BlogController extends Controller
 {
@@ -77,6 +79,38 @@ class BlogController extends Controller
     } catch (\Exception $e) {
        return response()->json(['success' => false, 'message' => 'Filed to genearate blog' . $e->getMessage()], 500);
     } 
+
+    }
+    //End Method 
+
+    public function SaveBlog(Request $request){
+        $request->validate([
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'category' => 'nullable|string',
+            'image' => 'nullable|image',
+        ]);
+
+        $imageUrl = null;
+
+        if ($request->hasFile('image')) {
+           $image = $request->file('image');
+           $manager = new ImageManager(new Driver());
+           $nameGen = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();  
+           $img = $manager->read($image);
+           $img->resize(872,470)->save(public_path('upload/blog/'.$nameGen));
+           $imageUrl = 'upload/blog/'.$nameGen;
+
+        }
+
+        $blog = Blog::create([
+            'title' => $request->title,
+            'category' => $request->category,
+            'content' => $request->content,
+            'image' => $imageUrl,
+        ]);
+
+        return resonse()->json(['message' => 'Blog Saved Successfully', 'id' => $blog->id ]);
 
     }
     //End Method 

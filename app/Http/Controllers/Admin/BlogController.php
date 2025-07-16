@@ -171,6 +171,22 @@ class BlogController extends Controller
     }
     //End Method 
 
+    public function DeleteBlog($id){
+        $blog = Blog::findOrFail($id);
+        if ($blog->image && file_exists(public_path($blog->image))) {
+            unlink(public_path($blog->image));
+        }
+
+        $blog->delete();
+
+        $notification = array(
+            'message' => 'Blog deleted successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    //End Method 
+
 
 
 

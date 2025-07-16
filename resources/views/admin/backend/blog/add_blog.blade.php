@@ -48,7 +48,7 @@
         </div> 
       </div>
 
-    <button class="btn btn-info">Save to Database</button>
+    <button class="btn btn-info" onclick="saveBlog()">Save to Database</button>
 
     </div>
 
@@ -102,8 +102,60 @@
     }
 
 
-    
+    async function saveBlog(){
+        const content = quill.root.innerHTML;
+        const title = document.getElementById('blog-title').value;
+        const category = document.getElementById('category').value;
+        const imageInput = document.getElementById('image');
+        let image = '';
 
+    try {
+        if (imageInput.files && imageInput.files[0]) {
+            const formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+            formData.append('title', title);
+            formData.append('content', content);
+            formData.append('category',category);
+
+            const uploadResponse = await fetch('/save-blog',{
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content;
+                },
+                body: formData
+            });
+
+        if (!uploadResponse.ok) {
+            throw new Error(`HTTP error status: ${uploadResponse.status}`);
+        }
+
+        const result = await uploadResponse.json();
+        alert(result.message);
+        return; // EXIT AFTER SUCCESSFULLY SAVE
+            
+        } else {
+            // if there have no image send this json data with other data
+            const response = await fetch('/save-blog',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content;
+                },
+                body: JSON.stringify({ title,content,category, image })
+            });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        alert(result.message); 
+        } 
+    } catch (error) {
+        console.error('Save blog error',error)
+       }
+
+    } 
 
 </script>
 

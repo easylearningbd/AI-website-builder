@@ -15,6 +15,10 @@
             </div>
 
     <div class="card-body">
+    <form id="blog-form"  action="{{ route('update.blog') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="id" value="{{ $blog->id }}">
+
         <div class="row g-2">
         <div class="mb-3 col-md-6">
             <label for="input2" class="form-label">Blog Title</label>
@@ -23,7 +27,8 @@
      
 
         <div class="mb-3 col-md-12">
-            <div id="editor" style="height :400px;" > </div> 
+            <div id="editor" style="height :400px;" > </div>
+            <input type="hidden" name="content" id="content" > 
         </div>
 
         <div class="mb-3 col-md-6">
@@ -45,8 +50,8 @@
         </div> 
       </div>
 
-    <button class="btn btn-info" onclick="saveBlog()">Save to Database</button>
-
+    <button class="btn btn-info" type="submit">Save Changes</button>
+  </form>
     </div>
 
 
@@ -76,6 +81,10 @@
                 toastr.error('Failed to load blog content.');
             }
         @endif
+
+  document.getElementById('blog-form').addEventListener('submit', function () {
+  document.getElementById('content').value = quill.root.innerHTML;
+    });
  
 </script>
 

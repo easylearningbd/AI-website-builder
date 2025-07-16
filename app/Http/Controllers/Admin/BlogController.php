@@ -121,7 +121,55 @@ class BlogController extends Controller
     }
     //End Method 
 
+     public function UpdateBlog(Request $request){
 
+        $blog_id = $request->id;
+        $blog = Blog::findOrFail($blog_id); 
+
+        if ($request->file('image')) {
+           $image = $request->file('image');
+           $manager = new ImageManager(new Driver());
+           $nameGen = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();  
+           $img = $manager->read($image);
+           $img->resize(872,470)->save(public_path('upload/blog/'.$nameGen));
+           $imageUrl = 'upload/blog/'.$nameGen;
+
+           if (file_exists(public_path($blog->image))) {
+             @unlink(public_path($blog->image));
+           }
+
+            Blog::find($blog_id)->update([
+            'title' => $request->title,
+            'category' => $request->category,
+            'content' => $request->content,
+            'image' => $imageUrl,
+        ]);
+
+         $notification = array(
+            'message' => 'Blog updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.blog')->with($notification); 
+
+        } else {
+
+            Blog::find($blog_id)->update([
+            'title' => $request->title,
+            'category' => $request->category,
+            'content' => $request->content, 
+        ]);
+
+         $notification = array(
+            'message' => 'Blog updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.blog')->with($notification); 
+
+        } 
+    }
+    //End Method 
 
 
 

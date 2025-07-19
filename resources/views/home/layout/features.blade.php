@@ -15,7 +15,7 @@
             <div class="cs_slide">
               <div class="cs_iconbox cs_style_1 cs_type_1 cs_heading_bg cs_center_column cs_radius_15 text-center">
                 <span class="cs_iconbox_icon cs_center cs_radius_15 cs_accent_bg cs_mb_28">
-                <img src="assets/img/icons/browser.svg" alt="Browser icon">
+                <img src="{{ asset('frontend/assets/img/icons/browser.svg') }}" alt="Browser icon">
                 </span>
                 <div class="cs_iconbox_info">
                   <h3 class="cs_iconbox_title cs_fs_29 cs_normal cs_white_color">Contact Management</h3>
@@ -30,7 +30,7 @@
             <div class="cs_slide">
               <div class="cs_iconbox cs_style_1 cs_type_1 cs_heading_bg cs_center_column cs_radius_15 text-center">
                 <span class="cs_iconbox_icon cs_center cs_radius_15 cs_bg_1 cs_mb_28">
-                <img src="assets/img/icons/stats.svg" alt="Stats icon">
+                <img src="{{ asset('frontend/assets/img/icons/browser.svg') }}" alt="Browser icon">
                 </span>
                 <div class="cs_iconbox_info">
                   <h3 class="cs_iconbox_title cs_fs_29 cs_normal cs_white_color">Sales Track Management</h3>
@@ -45,7 +45,7 @@
             <div class="cs_slide">
               <div class="cs_iconbox cs_style_1 cs_type_1 cs_heading_bg cs_center_column cs_radius_15 text-center">
                 <span class="cs_iconbox_icon cs_center cs_radius_15 cs_bg_2 cs_mb_28">
-                <img src="assets/img/icons/point-of-sale-bill.svg" alt="Point of sale bill icon">
+               <img src="{{ asset('frontend/assets/img/icons/browser.svg') }}" alt="Browser icon">
                 </span>
                 <div class="cs_iconbox_info">
                   <h3 class="cs_iconbox_title cs_fs_29 cs_normal cs_white_color">Reporting and Analytics</h3>
@@ -60,7 +60,7 @@
             <div class="cs_slide">
               <div class="cs_iconbox cs_style_1 cs_type_1 cs_heading_bg cs_center_column cs_radius_15 text-center">
                 <span class="cs_iconbox_icon cs_center cs_radius_15 cs_accent_bg cs_mb_28">
-                <img src="assets/img/icons/browser.svg" alt="Browser icon">
+              <img src="{{ asset('frontend/assets/img/icons/browser.svg') }}" alt="Browser icon">
                 </span>
                 <div class="cs_iconbox_info">
                   <h3 class="cs_iconbox_title cs_fs_29 cs_normal cs_white_color">Contact Management</h3>

@@ -1,7 +1,7 @@
 <section>
       <div class="cs_height_134 cs_height_lg_80"></div>
       <div class="container">
-        <div class="cs_cta cs_style_2 cs_type_1 cs_heading_bg cs_bf_filed cs_radius_10" data-src="assets/img/counter_bg.svg">
+        <div class="cs_cta cs_style_2 cs_type_1 cs_heading_bg cs_bf_filed cs_radius_10" data-src="{{ asset('frontend/assets/img/counter_bg.svg') }}">
           <div class="cs_center_column text-center position-relative z-1">
             <h2 class="cs_contet_title cs_fs_70 cs_white_color cs_mb_55 wow fadeInDown"> Ready to enhance your sales & <br> customer satisfaction?</h2>
             <form action="#" class="cs_newsletter_form cs_type_3 cs_mb_21 position-relative wow fadeInUp">

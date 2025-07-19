@@ -4,9 +4,9 @@
         <div class="cs_card cs_style_1 cs_type_4 row cs_gap_y_40 align-items-center position-relative">
           <div class="col-xl-5 col-lg-5 offset-xl-1 order-lg-2">
             <div class="cs_card_thumbnail cs_radius_15 position-relative wow fadeInRight">
-              <img src="assets/img/feature_8.jpg" alt="Feature image">
+              <img src="{{ asset('frontend/assets/img/feature_8.jpg') }}" alt="Feature image">
               <div class="cs_illustration cs_radius_10 position-absolute">
-                <img src="assets/img/Illustration_4.png" alt="Analytics chart image">
+                <img src="{{ asset('frontend/assets/img/Illustration_4.png') }}" alt="Analytics chart image">
               </div>
             </div>
           </div>
@@ -69,10 +69,10 @@
             </div>
           </div>
           <div class="cs_vector_shape_3 position-absolute">
-            <img src="assets/img/vector_1.svg" alt="Vector shape">
+            <img src="{{ asset('frontend/assets/img/vector_1.svg') }}" alt="Vector shape">
           </div>
           <div class="cs_vector_shape_4 position-absolute">
-            <img src="assets/img/vector_1.svg" alt="Vector shape">
+            <img src="{{ asset('frontend/assets/img/vector_1.svg') }}" alt="Vector shape">
           </div>
         </div>
       </div>

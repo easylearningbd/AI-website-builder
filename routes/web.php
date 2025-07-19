@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserProjectController;
 
+use App\Http\Controllers\Home\HomeController;
+
 Route::get('/', function () {
     return view('home.index');
 });
@@ -101,6 +103,12 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
   Route::controller(BlogController::class)->group(function(){
     Route::get('/all/blog', 'AllBlog')->name('all.blog');
     Route::get('/add/blog', 'AddBlog')->name('add.blog');
+
+  });
+
+
+    Route::controller(HomeController::class)->group(function(){
+    Route::get('/get/slider', 'GetSlider')->name('get.slider'); 
 
   });
 

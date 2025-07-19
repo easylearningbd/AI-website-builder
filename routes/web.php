@@ -109,6 +109,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
     Route::controller(HomeController::class)->group(function(){
     Route::get('/get/slider', 'GetSlider')->name('get.slider'); 
+    Route::post('/update/slider', 'UpdateSlider')->name('update.slider'); 
 
   });
 

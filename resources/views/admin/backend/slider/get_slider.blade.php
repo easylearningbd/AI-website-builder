@@ -11,8 +11,10 @@
 
         <div class="card-body">
             
-    <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data" >
+    <form action="{{ route('update.slider') }}" method="post" enctype="multipart/form-data" >
         @csrf
+
+        <input type="hidden" name="id" value="{{ $slider->id }}">
 
         <div class="row g-2">
             
@@ -38,7 +40,7 @@
 
               <div class="mb-3 col-md-6">
                 <label for="inputEmail4" class="form-label"> </label>
-                 <img id="showImage" src="{{ (!empty($slider->image)) ? url('upload/slider/'.$slider->image) : url('upload/no_image.jpg') }}"  class="rounded-circle avatar-xl img-thumbnail" style="width: 80px; height:80px;" >
+                 <img id="showImage" src="{{ asset($slider->image) }}"  class="rounded-circle avatar-xl img-thumbnail" style="width: 80px; height:80px;" >
             </div>
             
         </div>

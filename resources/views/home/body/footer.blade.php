@@ -6,7 +6,7 @@
             <div class="col-xl-5 col-lg-4 col-md-7">
               <div class="cs_footer_widget cs_text_widget">
                 <div class="cs_brand cs_mb_10 wow fadeInUp">
-                  <img src="assets/img/logo.svg" alt="Logo">
+                  <img src="{{ asset('frontend/assets/img/logo.svg') }}" alt="Logo">
                 </div>
                 <p class="mb-0">Our analytics application turns raw data into actionable insights, empowering businesses to make data-driven decisions and enhance performance.</p>
               </div>
@@ -63,7 +63,7 @@
             <span>Instagram</span>
             </a>
           </div>
-          <div class="cs_footer_text cs_heading_color">Copyright &copy; <span class="cs_getting_year"></span> GoSaas theme by Laralink</div>
+          <div class="cs_footer_text cs_heading_color">Copyright &copy; <span class="cs_getting_year"></span> Easylearingbd.com</div>
         </div>
       </div>
     </footer>

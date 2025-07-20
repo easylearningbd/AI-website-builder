@@ -1,3 +1,9 @@
+ @php
+   $plans = App\Models\Plan::orderBy('id')->get();
+   $orderedPlans = collect([$plans->where('id',1)->first(), $plans->where('id',2)->first(), $plans->where('id',3)->first() ])->filter();
+
+ @endphp
+ 
  <section class="position-relative">
       <div class="cs_bg_shape_1 cs_accent_bg cs_radius_15 position-absolute"></div>
       <div class="cs_height_125 cs_height_lg_70"></div>
@@ -17,31 +23,48 @@
             </div>
           </li>
         </ul>
+
+   
         <div class="cs_pricing_table_wrapper_2">
-          <div class="cs_pricing_table cs_style_1 cs_type_3 cs_white_bg cs_radius_20 position-relative wow fadeInLeft">
+
+    @foreach ($orderedPlans as $index => $plan) 
+          <div class="cs_pricing_table cs_style_1 cs_type_3 cs_white_bg cs_radius_20 {{ $plan->name === 'Starter' ? 'active' : '' }}  position-relative {{ $index === 0 ? 'wow fadeInLeft' : ($index === 1 ? 'wow fadeInDown' : 'wow fadeInRight') }}  ">
+            @if ($plan->name === 'Starter')
+              <span class="cs_pricing_badge cs_fs_16 position-absolute">Most Popular</span>
+            @endif
+
             <div class="cs_pricing_head cs_mb_14">
-              <h2 class="cs_fs_38 mb-0">Free</h2>
-              <p class="cs_mb_18">Free for small team</p>
+              <h2 class="cs_fs_38 mb-0">{{ $plan->name }}</h2>
+              <p class="cs_mb_18">
+                @if ($plan->name === 'Free')
+                  Free for small team
+                @elseif ($plan->name === 'Starter')
+                  Most popular deal
+                @else 
+                For your large team
+                @endif
+              </p>
               <hr>
             </div>
-            <h3 class="cs_fs_38 cs_mb_17">$<span class="monthlyPrice">0</span><span class="yearlyPrice">0</span>
+            <h3 class="cs_fs_38 cs_mb_17">$<span class="monthlyPrice">{{ number_format($plan->price, 2) }}</span><span class="yearlyPrice">{{ number_format($plan->price * 12 * 0.8 , 2) }}</span>
               <small class="cs_fs_18 cs_normal cs_gray2_color">/
               <span class="monthlyText">month</span>
               <span class="yearlyText">year</span>
               </small>
             </h3>
             <ul class="cs_pricing_feature_list cs_mp_0">
+              
               <li>
                 <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
+                Up to {{ $plan->template_limit }} Projects
+              </li>
+              <li>
+                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
+                {{ $plan->token_limit }} Tokens
+              </li>
+              <li>
+                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid {{ $plan->name === 'Free' ? 'fa-xmark' : 'fa-check' }} "></i></span>
                 Unlimited cards
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Up to 10 boards per
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited Power-Ups per board
               </li>
               <li>
                 <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-xmark"></i></span>
@@ -52,105 +75,16 @@
                 Unlimited activity log
               </li>
               <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-xmark"></i></span>
+                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid {{ $plan->name === 'Free' ? 'fa-xmark' : 'fa-check' }} "></i></span>
                 Assignee and due dates
               </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-xmark"></i></span>
-                Assignee and due dates
-              </li>
+               
             </ul>
-            <a href="contact.html" aria-label="Buy service button" class="cs_pricing_btn cs_center cs_fs_16 cs_semibold">Choose Plan</a>
+            <a href="{{ route('register') }}" aria-label="Buy service button" class="cs_pricing_btn cs_center cs_fs_16 cs_semibold">Choose Plan</a>
           </div>
-          <div class="cs_pricing_table cs_style_1 cs_type_3 cs_white_bg cs_radius_20 active position-relative overflow-hidden wow fadeInDown">
-            <span class="cs_pricing_badge cs_fs_16 position-absolute">Most Popular</span>
-            <div class="cs_pricing_head cs_mb_14">
-              <h2 class="cs_fs_38 mb-0">Standard</h2>
-              <p class="cs_mb_18">Most popular deal</p>
-              <hr>
-            </div>
-            <h3 class="cs_fs_38 cs_mb_17">$<span class="monthlyPrice">10</span><span class="yearlyPrice">80</span>
-              <small class="cs_fs_18 cs_normal cs_gray2_color">/
-              <span class="monthlyText">month</span>
-              <span class="yearlyText">year</span>
-              </small>
-            </h3>
-            <ul class="cs_pricing_feature_list cs_mp_0">
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited cards
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Up to 10 boards per
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited Power-Ups per board
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited storage (10MB/file)
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited activity log
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-xmark"></i></span>
-                Assignee and due dates
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-xmark"></i></span>
-                Assignee and due dates
-              </li>
-            </ul>
-            <a href="contact.html" aria-label="Buy service button" class="cs_pricing_btn cs_center cs_fs_16 cs_semibold">Choose Plan</a>
-          </div>
-          <div class="cs_pricing_table cs_style_1 cs_type_3 cs_white_bg cs_radius_20 position-relative wow fadeInRight">
-            <div class="cs_pricing_head cs_mb_14">
-              <h2 class="cs_fs_38 mb-0">Premium</h2>
-              <p class="cs_mb_18">For your large team</p>
-              <hr>
-            </div>
-            <h3 class="cs_fs_38 cs_mb_17">$<span class="monthlyPrice">20</span><span class="yearlyPrice">90</span>
-              <small class="cs_fs_18 cs_normal cs_gray2_color">/
-              <span class="monthlyText">month</span>
-              <span class="yearlyText">year</span>
-              </small>
-            </h3>
-            <ul class="cs_pricing_feature_list cs_mp_0">
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited cards
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Up to 10 boards per
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited Power-Ups per board
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited storage (10MB/file)
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Unlimited activity log
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Assignee and due dates
-              </li>
-              <li>
-                <span class="cs_feature_icon cs_center cs_radius_100 cs_accent_bg cs_white_color"><i class="fa-solid fa-check"></i></span>
-                Assignee and due dates
-              </li>
-            </ul>
-            <a href="contact.html" aria-label="Buy service button" class="cs_pricing_btn cs_center cs_fs_16 cs_semibold">Choose Plan</a>
-          </div>
+        @endforeach
+
+           
         </div>
       </div>
       <div class="cs_height_140 cs_height_lg_80"></div>

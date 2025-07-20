@@ -142,7 +142,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
    Route::post('/update-slider/{id}', [HomeController::class, 'UpdateSliders']);
    Route::post('/update-slider-image/{id}', [HomeController::class, 'UpdateSliderImage']);
 
-
+    Route::get('projects/{project}/previewhome', [ProjectController::class, 'ViewPreviewHome'])->name('projects.previewhome');
 
 
 

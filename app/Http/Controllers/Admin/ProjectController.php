@@ -98,6 +98,14 @@ class ProjectController extends Controller
     }
     // End Method 
 
+     public function ViewPreviewHome(Project $project){
+
+       $project = $project;
+       return view('admin.backend.projects.preview',compact('project'));
+
+    }
+    // End Method 
+
     public function Export(Project $project){
 
         $this->authorize('view',$project);
@@ -154,7 +162,8 @@ class ProjectController extends Controller
             'message' => 'Transaction updates successfully',
             'alert-type' => 'success'
         ); 
-        return redirect()->route('all.orders')->with($notification);  
+        return redirect()->route('all.orders')->with($notification); 
+
     }
      // End Method 
 

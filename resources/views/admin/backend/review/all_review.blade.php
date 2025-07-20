@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <a href="{{ route('add.plans') }}" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add Review</a>
+    <a href="{{ route('add.review') }}" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add Review</a>
 </div>
 
 

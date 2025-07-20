@@ -18,6 +18,39 @@ class ReviewController extends Controller
     }
     // End Method 
 
+    public function AddReview(){
+        return view('admin.backend.review.add_review');
+    }
+     // End Method 
+
+     public function StoreReview(Request $request){ 
+
+        if ($request->file('image')) {
+           $image = $request->file('image');
+           $manager = new ImageManager(new Driver());
+           $nameGen = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();  
+           $img = $manager->read($image);
+           $img->resize(60,60)->save(public_path('upload/review/'.$nameGen));
+           $imageUrl = 'upload/review/'.$nameGen; 
+
+            Review::create([
+            'name' => $request->name,
+            'post' => $request->post,
+            'message' => $request->message,
+            'image' => $imageUrl,
+        ]);
+
+         $notification = array(
+            'message' => 'Review Inserted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.review')->with($notification); 
+
+        } 
+    }
+    //End Method 
+
 
 
 

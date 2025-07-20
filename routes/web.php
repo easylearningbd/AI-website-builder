@@ -14,6 +14,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserProjectController;
 
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\ReviewController;
 
 Route::get('/', function () {
     return view('home.index');
@@ -110,6 +111,11 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
     Route::controller(HomeController::class)->group(function(){
     Route::get('/get/slider', 'GetSlider')->name('get.slider'); 
     Route::post('/update/slider', 'UpdateSlider')->name('update.slider'); 
+
+  });
+
+  Route::controller(ReviewController::class)->group(function(){
+    Route::get('/all/review', 'AllReview')->name('all.review');   
 
   });
 

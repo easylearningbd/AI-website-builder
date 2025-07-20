@@ -118,6 +118,9 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
     Route::get('/all/review', 'AllReview')->name('all.review');   
     Route::get('/add/review', 'AddReview')->name('add.review');
     Route::post('/store/review', 'StoreReview')->name('store.review');
+    Route::get('/edit/review/{id}', 'EditReview')->name('edit.review');
+    Route::post('/update/review', 'UpdateReview')->name('update.review');
+    Route::get('/delete/review/{id}', 'DeleteReview')->name('delete.review');
 
   });
 

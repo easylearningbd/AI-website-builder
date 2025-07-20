@@ -39,8 +39,8 @@
                 <td> <img src="{{ asset($item->image) }}"  style="width: 70px; height:40px;"> </td>
                 <td>{!! Str::limit($item->message, 50, '...') !!}</td>
                 <td class="text-muted">
-<a href="{{ route('edit.plans',$item->id) }}" class="link-reset fs-20 p-1"> <i class="ti ti-pencil"></i></a>
-<a href="{{ route('delete.plans',$item->id) }}" class="link-reset fs-20 p-1" id="delete"> <i class="ti ti-trash"></i></a>
+<a href="{{ route('edit.review',$item->id) }}" class="link-reset fs-20 p-1"> <i class="ti ti-pencil"></i></a>
+<a href="{{ route('delete.review',$item->id) }}" class="link-reset fs-20 p-1" id="delete"> <i class="ti ti-trash"></i></a>
                 </td>
             </tr>
          @endforeach

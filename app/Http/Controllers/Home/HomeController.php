@@ -81,7 +81,38 @@ class HomeController extends Controller
         return redirect()->back()->with($notification); 
 
     }
-     //End Method 
+     //End Method  
+
+    public function UpdateSliderImage(Request $request, $id){ 
+        $slider = Slider::findOrFail($id);
+
+        if ($request->file('image')) {
+           $image = $request->file('image');
+           $manager = new ImageManager(new Driver());
+           $nameGen = hexdec(uniqid()) . '.'. $image->getClientOriginalExtension();  
+           $img = $manager->read($image);
+           $img->resize(804,870)->save(public_path('upload/slider/'.$nameGen));
+           $imageUrl = 'upload/slider/'.$nameGen;
+
+           if (file_exists(public_path($slider->image))) {
+             @unlink(public_path($slider->image));
+           }
+
+            $slider->update([ 
+            'image' => $imageUrl,
+        ]);
+
+        return response()->json([
+            'success' =>  true,
+            'image_url' => asset($imageUrl),
+            'message' => 'Image updated successfully'
+        ]);         
+
+        } 
+
+        return response()->json(['success' =>  false, 'message' => 'Image upload failed'],400);
+    }
+    //End Method 
 
 
 }

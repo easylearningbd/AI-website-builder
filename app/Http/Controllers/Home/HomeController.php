@@ -69,5 +69,19 @@ class HomeController extends Controller
     }
     //End Method 
 
+    public function UpdateSliders(Request $request, $id){
+        $slider = Slider::findOrFail($id);
+        $slider->update($request->only(['title','description']));
+
+        $notification = array(
+            'message' => 'Slider updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+    }
+     //End Method 
+
 
 }

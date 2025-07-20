@@ -139,7 +139,8 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
    Route::get('/delete/blog/{id}', [BlogController::class, 'DeleteBlog'])->name('delete.blog');
 
 
-
+   Route::post('/update-slider/{id}', [HomeController::class, 'UpdateSliders']);
+   Route::post('/update-slider-image/{id}', [HomeController::class, 'UpdateSliderImage']);
 
 
 

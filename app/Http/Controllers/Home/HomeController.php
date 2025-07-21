@@ -126,5 +126,12 @@ class HomeController extends Controller
     }
     //End Method 
 
+    public function BlogDetailsPage($id){
+        $blog = Blog::findOrFail($id);
+        return view('home.blog_details',compact('blog'));
+
+    }
+    //End Method 
+
 
 }

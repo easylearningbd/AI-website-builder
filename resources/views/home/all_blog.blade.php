@@ -56,7 +56,7 @@
             </h3>
         <p class="cs_post_subtitle cs_mb_33">
             {!! Str::limit($item->content, 150, '...') !!}</p>
-        <a href="blog-details.html" aria-label="Read post button" class="cs_btn cs_style_1 cs_purple_bg cs_accent_hover cs_white_color cs_fs_16 cs_semibold cs_radius_30"><span> Read more</span></a>
+        <a href="{{ route('blog.details',$item->id) }}" aria-label="Read post button" class="cs_btn cs_style_1 cs_purple_bg cs_accent_hover cs_white_color cs_fs_16 cs_semibold cs_radius_30"><span> Read more</span></a>
         </div>
     </article>
     @endforeach

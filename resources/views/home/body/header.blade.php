@@ -3,7 +3,7 @@
         <div class="container">
           <div class="cs_main_header_in">
             <div class="cs_main_header_left">
-              <a class="cs_site_branding" href="index.html" aria-label="Home page link">
+              <a class="cs_site_branding" href="{{ url('/') }}" aria-label="Home page link">
               <img src="{{ asset('frontend/assets/img/logo.svg') }}" alt="Logo">
               </a>
             </div>

@@ -156,6 +156,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
     Route::get('projects/{project}/previewhome', [ProjectController::class, 'ViewPreviewHome'])->name('projects.previewhome');
 
 
+   Route::get('/pricing', [HomeController::class, 'PricingPage'])->name('pricing');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

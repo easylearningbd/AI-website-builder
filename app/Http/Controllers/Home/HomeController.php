@@ -18,7 +18,7 @@ class HomeController extends Controller
     }
     // End Method 
 
-
+ 
     public function UpdateSlider(Request $request){
 
         $slider_id = $request->id;
@@ -113,6 +113,11 @@ class HomeController extends Controller
         return response()->json(['success' =>  false, 'message' => 'Image upload failed'],400);
     }
     //End Method 
+
+    public function PricingPage(){
+        return view('home.pricing_page');
+    }
+     //End Method 
 
 
 }

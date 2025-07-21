@@ -157,6 +157,7 @@ Route::prefix('admin')->middleware(['auth',IsAdmin::class])->group(function(){
 
 
    Route::get('/pricing', [HomeController::class, 'PricingPage'])->name('pricing');
+   Route::get('/blog', [HomeController::class, 'BlogPage'])->name('blog');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

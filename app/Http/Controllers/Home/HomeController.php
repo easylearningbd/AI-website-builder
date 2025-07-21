@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Slider;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use App\Models\Blog;
 
 class HomeController extends Controller
 {
@@ -118,6 +119,12 @@ class HomeController extends Controller
         return view('home.pricing_page');
     }
      //End Method 
+
+    public function BlogPage(){
+        $blog = Blog::latest()->get();
+        return view('home.all_blog',compact('blog'));
+    }
+    //End Method 
 
 
 }

@@ -12,7 +12,7 @@
 <ul class="cs_nav_list"> 
     <li><a href="{{ url('/') }}" aria-label="Menu link">Home</a></li>
     <li><a href="{{ route('pricing') }}" aria-label="Menu link">Pricing</a></li>
-    <li><a href="blog.html" aria-label="Menu link">Blog</a></li> 
+    <li><a href="{{ route('blog') }}" aria-label="Menu link">Blog</a></li> 
     <li><a href="contact.html" aria-label="Menu link">Contact</a></li>
 </ul>
               </div>
